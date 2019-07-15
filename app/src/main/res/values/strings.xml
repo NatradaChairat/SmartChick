@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">SmartChick</string>
+    
+    <string name="login">เข้าสู่ระบบ</string>
+    <string name="register">ลงทะเบียน</string>
+    
+    <string name="khun">คุณ</string>
+    <string name="farm_name">ชื่อฟาร์ม</string>
+    <string name="id_chick">รหัสประจำตัวไก่</string>
+
+    <string name="select_farm">เลือกโรงเรือน</string>
+    <string name="select_month">เลือกเดือนที่ต้องการทราบข้อมูล</string>
+    
+    <string name="activity_appointment">นัดหมายกิจกรรม</string>
+    <string name="activity_description">รายละเอียดกิจกรรม</string>
+
+    <string name="total_chick">จำนวนไก่ทั้งหมดในโรงเรือน</string>
+    <string name="record_total_egg">บันทึกการออกไข่ทั้งหมด</string>
+    <string name="record_chick_moveout">บันทึกการนำไก่ออกจากระบบ</string>
+
+    <string name="history_movein">ประวัติการนำเข้าไก่</string>
+    <string name="history_moveout">ประวัติการนำออกไก่</string>
+
+    <string name="history_record_egg">ประวัติการบันทึกผลการออกไข่</string>
+
+</resources>

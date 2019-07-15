@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "963836886355",
+    "firebase_url": "https://smartchick-chick.firebaseio.com",
+    "project_id": "smartchick-chick",
+    "storage_bucket": "smartchick-chick.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:963836886355:android:ce671e7590f10832",
+        "android_client_info": {
+          "package_name": "com.android.smartchick"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "963836886355-810k2qf53ilaa9j53qkrjt672mluh0f2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAB7dxcx5UpwOZBZ18H6wV3LjzmdyGRawM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "963836886355-810k2qf53ilaa9j53qkrjt672mluh0f2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
