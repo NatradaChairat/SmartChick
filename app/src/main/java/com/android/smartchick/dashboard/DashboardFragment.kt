@@ -6,7 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.android.smartchick.R
+import com.android.smartchick.chick.add.AddChickFragment
 import com.android.smartchick.chick.profile.ProfileChickFragment
+import com.android.smartchick.egg.DailyEggFragment
 import com.android.smartchick.farm.FarmInformationFragment
 import kotlinx.android.synthetic.main.fragment_main.*
 
@@ -30,6 +32,15 @@ class DashboardFragment : Fragment() {
         btnInfoFarm.setOnClickListener {
             fragmentManager!!.beginTransaction().replace(R.id.contentFrame, FarmInformationFragment.newInstance()).addToBackStack(null).commit()
         }
+
+        btnDailyEgg.setOnClickListener {
+            fragmentManager!!.beginTransaction().replace(R.id.contentFrame, DailyEggFragment.newInstance()).addToBackStack(null).commit()
+        }
+
+        btnAddChick.setOnClickListener {
+            fragmentManager!!.beginTransaction().replace(R.id.contentFrame, AddChickFragment.newInstance()).addToBackStack(null).commit()
+        }
+
     }
 
     companion object {
