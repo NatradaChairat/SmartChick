@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.android.smartchick.R
@@ -29,13 +30,14 @@ class AuthenticationFragment: Fragment() {
     private fun initListener(){
         btnRegister.setOnClickListener {
 
-            (activity as AppCompatActivity).supportFragmentManager.findFragmentById(R.id.contentFrame) as RegisterFragment?
-                    ?: RegisterFragment.newInstance().also {
-                        (activity as AppCompatActivity).supportFragmentManager.beginTransaction().apply {
-                            replace(R.id.contentFrame, it).commit()
-                        }
-                        RegisterPresenter()
-                    }
+//            (activity as AppCompatActivity).supportFragmentManager.findFragmentById(R.id.contentFrame) as RegisterFragment?
+//                    ?: RegisterFragment.newInstance().also {
+//                        (activity as AppCompatActivity).supportFragmentManager.beginTransaction().apply {
+//                            replace(R.id.contentFrame, it).commit()
+//                        }
+//                        RegisterPresenter()
+//                    }
+            Toast.makeText(context!!, "Application not support Register function", Toast.LENGTH_SHORT).show()
 
         }
 

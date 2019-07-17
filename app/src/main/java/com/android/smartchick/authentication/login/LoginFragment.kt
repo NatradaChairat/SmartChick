@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import com.android.smartchick.R
 import com.android.smartchick.chick.ChickActivity
 import com.android.smartchick.chick.profile.ProfileChickFragment
+import com.android.smartchick.dashboard.DashboardFragment
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.fragment_login.*
 
@@ -40,7 +41,7 @@ class LoginFragment : Fragment(), LoginContract.View{
 //                    startActivity(ChickActivity.newIntent(context!!))
 //                }
 
-                fragmentManager!!.beginTransaction().replace(R.id.contentFrame, ProfileChickFragment.newInstance()).addToBackStack(null).commit()
+                fragmentManager!!.beginTransaction().replace(R.id.contentFrame, DashboardFragment.newInstance()).addToBackStack(null).commit()
 
             }
             false -> {
