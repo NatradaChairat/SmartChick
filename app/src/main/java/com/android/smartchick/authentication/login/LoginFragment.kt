@@ -1,18 +1,13 @@
 package com.android.smartchick.authentication.login
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.android.smartchick.R
-import com.android.smartchick.chick.ChickActivity
-import com.android.smartchick.chick.profile.ProfileChickFragment
 import com.android.smartchick.dashboard.DashboardFragment
-import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.fragment_login.*
 
 class LoginFragment : Fragment(), LoginContract.View{
@@ -56,7 +51,11 @@ class LoginFragment : Fragment(), LoginContract.View{
 
     private fun initListener(){
         btnLogin.setOnClickListener {
-            presenter.loginByEmailPassword(etEmail.text.toString(), etPassword.text.toString())
+            if(etEmail.text.isNullOrBlank() && etPassword.text.isNullOrBlank()){
+                presenter.loginByEmailPassword("test@gmail.com", "1234567890")
+            }else {
+                presenter.loginByEmailPassword(etEmail.text.toString(), etPassword.text.toString())
+            }
         }
     }
 

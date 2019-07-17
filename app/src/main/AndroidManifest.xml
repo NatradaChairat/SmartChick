@@ -3,6 +3,7 @@
     package="com.android.smartchick">
 
     <uses-permission android:name="android.permission.CAMERA" />
+    <uses-feature android:name="android.hardware.camera.autofocus"/>
 
     <application
         android:allowBackup="true"
@@ -21,10 +22,6 @@
 
         <activity
             android:name=".authentication.AuthenticationActivity"
-            android:launchMode="standard"
-            android:theme="@style/Theme.Design.NoActionBar"/>
-        <activity
-            android:name=".chick.ChickActivity"
             android:launchMode="standard"
             android:theme="@style/Theme.Design.NoActionBar"/>
     </application>

@@ -11,11 +11,17 @@
         android:text="กรุณาสแกน QR Code"
         android:layout_marginBottom="20dp"/>
 
-    <com.journeyapps.barcodescanner.DecoratedBarcodeView
-        android:id="@+id/barcodeView"
-        android:layout_width="match_parent"
-        android:layout_height="135dp"/>
+    <!--<com.journeyapps.barcodescanner.DecoratedBarcodeView-->
+        <!--android:id="@+id/barcodeView"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="135dp"/>-->
         <!--app:zxing_scanner_layout="@layout/custom_barcode_view" />-->
+    <me.dm7.barcodescanner.zxing.ZXingScannerView
+        android:id="@+id/frame_layout_camera"
+        android:layout_width="240dp"
+        android:layout_height="240dp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="20dp"/>
 
     <TextView
         android:layout_width="wrap_content"
