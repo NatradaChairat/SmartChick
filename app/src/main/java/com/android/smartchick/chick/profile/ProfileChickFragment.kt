@@ -77,63 +77,7 @@ class ProfileChickFragment : Fragment(), ZXingScannerView.ResultHandler  {
 
             mScannerView!!.resumeCameraPreview(this)
         }
-//        val s = CameraSettings()
-//        s.requestedCameraId = 0
-//        barcodeView.barcodeView.cameraSettings = s
-//        barcodeView.resume()
-//
-//        barcodeView.decodeSingle(object : BarcodeCallback {
-//            override fun barcodeResult(result: BarcodeResult) {
-//                Log.d("ProfileChick ","barcode result: $result")
-//                // do your thing with result
-//            }
-//
-//            override fun possibleResultPoints(resultPoints: List<ResultPoint>) {}
-//        })
-//        captureManager = CaptureManager(activity, barcodeView)
-//        captureManager.initializeFromIntent(intent, savedInstanceState)
 
-//        btnScan.setOnClickListener {
-//            txtResult.text = "scaning..."
-//            barcodeView.decodeSingle(object: BarcodeCallback {
-//                override fun barcodeResult(result: BarcodeResult?) {
-//                    result?.let {
-//                        txtResult.text = it.text
-//
-//                        val vib: Vibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
-//
-//                        if(vib.hasVibrator()){
-//                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
-//                                // void vibrate (VibrationEffect vibe)
-//                                vib.vibrate(
-//                                        VibrationEffect.createOneShot(
-//                                                100,
-//                                                // The default vibration strength of the device.
-//                                                VibrationEffect.DEFAULT_AMPLITUDE
-//                                        )
-//                                )
-//                            }else{
-//                                // This method was deprecated in API level 26
-//                                vib.vibrate(100)
-//                            }
-//                        }
-//                    }
-//                }
-//
-//                override fun possibleResultPoints(resultPoints: MutableList<ResultPoint>?) {
-//                }
-//            })
-//        }
-//
-//        btnTorch.setOnClickListener {
-//            if(torchState){
-//                torchState = false
-//                barcodeView.setTorchOff()
-//            } else {
-//                torchState = true
-//                barcodeView.setTorchOn()
-//            }
-//        }
     }
 
     companion object {

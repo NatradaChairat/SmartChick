@@ -25,11 +25,11 @@ class LoginPresenter(val view: LoginContract.View) : LoginContract.Presenter {
                         // Sign in success, update UI with the signed-in user's information
                         Log.d(TAG, "signInWithEmail:success ${auth.currentUser!!.uid}")
                         val user = auth.currentUser
-                        view.onResultLoaded(true)
+                        view.onResultLoaded(true, user!!.uid)
                     } else {
                         // If sign in fails, display a message to the user.
                         Log.w(TAG, "signInWithEmail:failure", task.exception)
-                        view.onResultLoaded(false)
+                        view.onResultLoaded(false, null)
                     }
 
                 }

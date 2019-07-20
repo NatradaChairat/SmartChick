@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.android.smartchick.R
 import com.android.smartchick.dashboard.DashboardFragment
@@ -25,19 +26,20 @@ class LoginFragment : Fragment(), LoginContract.View{
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        (activity as AppCompatActivity).supportActionBar?.hide()
+
         presenter = LoginPresenter(this)
         initListener()
     }
 
-    override fun onResultLoaded(result: Boolean) {
+    override fun onResultLoaded(result: Boolean, memberID: String?) {
         when(result){
             true -> {
-//                activity?.let{
-//                    startActivity(ChickActivity.newIntent(context!!))
-//                }
-
-                fragmentManager!!.beginTransaction().replace(R.id.contentFrame, DashboardFragment.newInstance()).addToBackStack(null).commit()
-
+                val dashboardFragment = DashboardFragment.newInstance()
+                var bundle = Bundle()
+                bundle.putString("MEMBER_ID", memberID)
+                dashboardFragment.arguments = bundle
+                fragmentManager!!.beginTransaction().replace(R.id.contentFrame, dashboardFragment).addToBackStack(null).commit()
             }
             false -> {
                 Toast.makeText(context!!, "Incorrect!", Toast.LENGTH_LONG).show()
@@ -46,7 +48,7 @@ class LoginFragment : Fragment(), LoginContract.View{
     }
 
     override fun onError(error: String?) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        Toast.makeText(context!!, "Error!", Toast.LENGTH_LONG).show()
     }
 
     private fun initListener(){
