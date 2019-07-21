@@ -8,6 +8,7 @@ interface DashboardContract {
     interface View : BaseView<Presenter> {
         fun onResultLoaded(member: Member)
         fun onError(error: String? = null)
+        fun showLoadingIndicator(active: Boolean)
     }
 
     interface Presenter : BasePresenter {

@@ -16,6 +16,7 @@ class DashboardPresenter (val view: DashboardContract.View,
         view.presenter = this
     }
     override fun start() {
+        view.showLoadingIndicator(true)
         loadInformation(memberID)
     }
 
@@ -25,14 +26,18 @@ class DashboardPresenter (val view: DashboardContract.View,
         myRef.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 var resultList = mutableListOf<Member>()
-
+                resultList.clear()
                 dataSnapshot.children.mapNotNullTo(resultList) { it.getValue<Member>(Member::class.java) }
                 Log.d("DashBoard", "Value res: $resultList")
+                view.onResultLoaded(resultList[0])
+                view.showLoadingIndicator(false)
             }
 
             override fun onCancelled(error: DatabaseError) {
                 // Failed to read value
                 Log.w("DashBoard", "Failed to read value.", error.toException())
+                view.onError("Failed to read value.")
+                view.showLoadingIndicator(false)
             }
         })
     }

@@ -2,7 +2,6 @@ package com.android.smartchick.data
 
 import com.google.firebase.database.Exclude
 import com.google.firebase.database.IgnoreExtraProperties
-import com.google.firebase.database.PropertyName
 
 @IgnoreExtraProperties
 data class Member(

@@ -7,20 +7,21 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import com.android.smartchick.R
 import com.android.smartchick.dashboard.DashboardFragment
 import kotlinx.android.synthetic.main.fragment_login.*
+import android.content.SharedPreferences
+import android.content.Context.MODE_PRIVATE
+
+
+val MEMBER = "MEMBER"
+val MEMBER_ID = "MEMBER_ID"
 
 class LoginFragment : Fragment(), LoginContract.View{
 
     override lateinit var presenter : LoginContract.Presenter
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_login, container, false)
+        return inflater.inflate(com.android.smartchick.R.layout.fragment_login, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -35,11 +36,16 @@ class LoginFragment : Fragment(), LoginContract.View{
     override fun onResultLoaded(result: Boolean, memberID: String?) {
         when(result){
             true -> {
+                val sp = activity!!.getSharedPreferences(MEMBER, MODE_PRIVATE)
+                val editor = sp.edit()
+                editor.putString(MEMBER_ID, memberID)
+                editor.apply()
+
                 val dashboardFragment = DashboardFragment.newInstance()
                 var bundle = Bundle()
                 bundle.putString("MEMBER_ID", memberID)
                 dashboardFragment.arguments = bundle
-                fragmentManager!!.beginTransaction().replace(R.id.contentFrame, dashboardFragment).addToBackStack(null).commit()
+                fragmentManager!!.beginTransaction().replace(com.android.smartchick.R.id.contentFrame, dashboardFragment).addToBackStack(null).commit()
             }
             false -> {
                 Toast.makeText(context!!, "Incorrect!", Toast.LENGTH_LONG).show()
