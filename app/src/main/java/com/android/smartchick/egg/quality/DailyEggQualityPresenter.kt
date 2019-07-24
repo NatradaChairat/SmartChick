@@ -8,8 +8,10 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import java.text.SimpleDateFormat
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
+import java.util.*
 
 class DailyEggQualityPresenter(val view: DailyEggQualityContract.View,
                                var chickID: String) : DailyEggQualityContract.Presenter {
@@ -53,25 +55,47 @@ class DailyEggQualityPresenter(val view: DailyEggQualityContract.View,
         })
     }
 
-    @TargetApi(Build.VERSION_CODES.O)
+
     override fun crateDailyEgg(dailyEgg: DailyEgg) {
         view.showLoadingIndicator(true)
         Log.d("DailyQuality", "Value DailyEgg: $dailyEgg")
 
-        var localDateTime = LocalDateTime.now()
-        val formatter = DateTimeFormatter.ofPattern("ddMMyyyyHHmmssSSS")
-        val key = formatter.format(localDateTime)
-        val database = FirebaseDatabase.getInstance()
-        val myRef = database.getReference("DailyEgg").child(key)
-        myRef.setValue(dailyEgg)
-                .addOnSuccessListener {
-                    view.showLoadingIndicator(false)
-                    view.onSuccess()
-                }
-                .addOnFailureListener {
-                    view.showLoadingIndicator(true)
-                }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+
+            val localDateTime = LocalDateTime.now()
+            val formatter = DateTimeFormatter.ofPattern("ddMMyyyyHHmmssSSS")
+            val key = formatter.format(localDateTime)
+            val database = FirebaseDatabase.getInstance()
+            val myRef = database.getReference("DailyEgg").child(key)
+            myRef.setValue(dailyEgg)
+                    .addOnSuccessListener {
+                        view.showLoadingIndicator(false)
+                        view.onSuccess()
+                    }
+                    .addOnFailureListener {
+                        view.showLoadingIndicator(true)
+                    }
+
+        } else {
+            val localDateTime = Calendar.getInstance().time
+            val formatter = SimpleDateFormat("ddMMyyyyHHmmssSSS")
+            val key = formatter.format(localDateTime)
+            val database = FirebaseDatabase.getInstance()
+            val myRef = database.getReference("DailyEgg").child(key)
+            myRef.setValue(dailyEgg)
+                    .addOnSuccessListener {
+                        view.showLoadingIndicator(false)
+                        view.onSuccess()
+                    }
+                    .addOnFailureListener {
+                        view.showLoadingIndicator(true)
+                    }
+        }
+
+
 
 
     }
+
+
 }
