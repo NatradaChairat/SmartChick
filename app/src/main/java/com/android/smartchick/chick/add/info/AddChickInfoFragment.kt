@@ -37,7 +37,6 @@ class AddChickInfoFragment : Fragment(), AddChickContract.View{
 
         var sharedPref: SharedPreferences = activity!!.getSharedPreferences(MEMBER, Context.MODE_PRIVATE)
         memberID = sharedPref.getString(MEMBER_ID, null)
-
         presenter = AddChickPresenter(this)
 
         return inflater.inflate(R.layout.fragment_add_chick, container, false)

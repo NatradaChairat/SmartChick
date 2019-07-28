@@ -21,13 +21,13 @@ import kotlinx.android.synthetic.main.fragment_scan_add_chick.*
 import kotlinx.android.synthetic.main.fragment_scan_add_chick.frame_layout_camera
 import me.dm7.barcodescanner.zxing.ZXingScannerView
 
-class AddChickFragment : Fragment(), AddChickContract.View, ZXingScannerView.ResultHandler  {
+class AddChickFragment : Fragment(), AddChickContract.View, ZXingScannerView.ResultHandler {
 
     override lateinit var presenter: AddChickContract.Presenter
 
     private var mScannerView: ZXingScannerView? = null
     private var chickIDs = mutableListOf<String?>()
-    private var memberID : String? = null
+    private var memberID: String? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         presenter = AddChickPresenter(this)
@@ -76,7 +76,7 @@ class AddChickFragment : Fragment(), AddChickContract.View, ZXingScannerView.Res
     }
 
     override fun onSuccess() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+
     }
 
     override fun onChickIDListLoaded(result: MutableList<String?>) {
@@ -89,7 +89,7 @@ class AddChickFragment : Fragment(), AddChickContract.View, ZXingScannerView.Res
 
 
     override fun onError(error: String?) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        Toast.makeText(context!!, "Error", Toast.LENGTH_SHORT).show()
     }
 
     override fun showLoadingIndicator(active: Boolean) {
@@ -121,12 +121,9 @@ class AddChickFragment : Fragment(), AddChickContract.View, ZXingScannerView.Res
 
     private fun initListener() {
         etAddChickID.addTextChangedListener(object : TextWatcher {
-            override fun afterTextChanged(s: Editable?) {
-            }
+            override fun afterTextChanged(s: Editable?) { }
 
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-
-            }
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) { }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 tvAddChickID.text = s.toString()
@@ -163,7 +160,6 @@ class AddChickFragment : Fragment(), AddChickContract.View, ZXingScannerView.Res
                 false
             }
         }
-        return true
     }
 
     companion object {
