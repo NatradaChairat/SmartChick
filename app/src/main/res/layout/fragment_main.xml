@@ -17,28 +17,28 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:weightSum="7"
-        android:visibility="gone">
+        android:visibility="gone"
+        android:weightSum="7">
 
         <RelativeLayout
-            android:layout_height="wrap_content"
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="2">
 
             <ImageView
                 android:id="@+id/ivProfile"
                 android:layout_width="120dp"
                 android:layout_height="120dp"
-                android:src="@mipmap/ic_launcher"
+                android:layout_centerVertical="true"
                 android:layout_marginLeft="40dp"
-                android:layout_centerVertical="true"/>
+                android:src="@mipmap/ic_launcher" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_toEndOf="@+id/ivProfile"
                 android:layout_marginLeft="20dp"
+                android:layout_toEndOf="@+id/ivProfile"
                 android:orientation="vertical">
 
                 <TextView
@@ -65,94 +65,113 @@
         </RelativeLayout>
 
         <LinearLayout
-            android:layout_height="wrap_content"
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="5"
-            android:weightSum="5"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:weightSum="5">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
                 android:layout_weight="1"
-                android:gravity="center_vertical">
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
                 <Button
                     android:id="@+id/btnMain"
                     android:layout_width="0dp"
                     android:layout_height="70dp"
-                    android:text="Main"
+                    android:layout_marginLeft="20dp"
                     android:layout_weight="1"
-                    android:layout_marginLeft="20dp"/>
+                    android:text="Main"
+                    android:textSize="13sp"/>
+
                 <Button
                     android:id="@+id/btnDailyEgg"
                     android:layout_width="0dp"
                     android:layout_height="70dp"
+                    android:layout_weight="1"
                     android:text="Daily Egg"
-                    android:layout_weight="1"/>
+                    android:textSize="13sp"/>
+
                 <Button
                     android:id="@+id/btnAddChick"
                     android:layout_width="0dp"
                     android:layout_height="70dp"
-                    android:text="Add Chick"
+                    android:layout_marginRight="20dp"
                     android:layout_weight="1"
-                    android:layout_marginRight="20dp"/>
+                    android:text="Add Chick"
+                    android:textSize="13sp"/>
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
                 android:layout_weight="1"
-                android:gravity="center_vertical">
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
                 <Button
                     android:id="@+id/btnAction"
                     android:layout_width="0dp"
                     android:layout_height="70dp"
-                    android:text="Retire  Move out"
+                    android:layout_marginLeft="20dp"
                     android:layout_weight="1"
-                    android:layout_marginLeft="20dp"/>
+                    android:text="Retire  Move out"
+                    android:textSize="13sp"/>
+
                 <Button
                     android:id="@+id/btnProfileChick"
                     android:layout_width="0dp"
                     android:layout_height="70dp"
+                    android:layout_weight="1"
                     android:text="Profile Chicken"
-                    android:layout_weight="1"/>
+                    android:textSize="13sp"/>
+
                 <Button
                     android:id="@+id/btnStat"
                     android:layout_width="0dp"
                     android:layout_height="70dp"
-                    android:text="Statistic"
+                    android:layout_marginRight="20dp"
                     android:layout_weight="1"
-                    android:layout_marginRight="20dp"/>
+                    android:text="Statistic"
+                    android:textSize="13sp"/>
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
                 android:layout_weight="1"
-                android:gravity="center_vertical">
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
                 <Button
                     android:id="@+id/btnInfoFarm"
                     android:layout_width="0dp"
                     android:layout_height="70dp"
-                    android:text="Farm Info."
-                    android:layout_weight="1"
                     android:layout_marginLeft="20dp"
-                    />
+                    android:layout_weight="1"
+                    android:text="Farm Info."
+                    android:textSize="13sp"/>
+
                 <Button
                     android:id="@+id/btnSchedule"
                     android:layout_width="0dp"
                     android:layout_height="70dp"
+                    android:layout_weight="1"
                     android:text="Schedule"
-                    android:layout_weight="1"/>
+                    android:textSize="13sp"/>
+
                 <Button
                     android:id="@+id/btnKnowledge"
                     android:layout_width="0dp"
                     android:layout_height="70dp"
-                    android:text="Knowledge"
-                    android:layout_weight="1"
                     android:layout_marginRight="20dp"
-                    />
+                    android:layout_weight="1"
+                    android:lines="1"
+                    android:text="Knowledge"
+                    android:textSize="13sp" />
             </LinearLayout>
         </LinearLayout>
 
