@@ -1,60 +1,138 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:paddingHorizontal="20dp"
-    android:paddingVertical="20dp">
+    android:layout_height="match_parent">
 
-    <TextView
+    <ProgressBar
+        android:id="@+id/progressBarAddChick"
+        style="?android:attr/progressBarStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="รหัสประจำตัวไก่ " />
+        android:layout_gravity="center"
+        android:indeterminate="true"
+        android:visibility="gone" />
 
-    <View
+    <LinearLayout
+        android:id="@+id/llAddChick"
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#cccccc"
-        android:layout_marginVertical="20dp"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="วัน/เดือน/ปี เกิดของไก่ " />
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingHorizontal="20dp"
+        android:paddingVertical="20dp"
+        android:visibility="visible">
 
-    <EditText
-        android:id="@+id/etBOD"
-        android:layout_height="wrap_content"
-        android:layout_width="120dp"
-        android:inputType="date" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginVertical="10dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:text="รหัสประจำตัวไก่ " />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="น้ำหนักตัว " />
+            <TextView
+                android:id="@+id/infoIDAddChick"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:layout_marginLeft="16dp"/>
 
-    <EditText
-        android:id="@+id/etWeight"
-        android:layout_height="wrap_content"
-        android:layout_width="120dp"/>
+        </LinearLayout>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="อายุ " />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginVertical="20dp"
+            android:background="#cccccc" />
 
-    <EditText
-        android:id="@+id/etAge"
-        android:layout_height="wrap_content"
-        android:layout_width="120dp"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/select_farm"
+                android:layout_weight="0.8"
+                android:layout_gravity="center_vertical"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="ประวัติการได้รับวัคซีน " />
+            <androidx.appcompat.widget.AppCompatSpinner
+                android:id="@+id/spinnerFarm"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:spinnerMode="dropdown"
 
-    <EditText
-        android:id="@+id/etVaccine"
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent"/>
+                android:layout_weight="1.2"/>
 
-</LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="วัน/เดือน/ปี เกิดของไก่ "
+                android:layout_weight="1"/>
+
+            <EditText
+                android:id="@+id/etBOD"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:inputType="none"
+                android:focusable="false"
+                android:layout_weight="1"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="น้ำหนักตัว (กรัม)"
+                android:layout_weight="1"/>
+
+            <EditText
+                android:id="@+id/etWeight"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:layout_weight="1"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:text="ประวัติการได้รับวัคซีน "
+            android:textStyle="bold"/>
+
+        <EditText
+            android:id="@+id/etVaccine"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/btnAddChickInfo"
+            android:layout_width="120dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginVertical="20dp"
+            android:backgroundTint="@color/colorPrimary"
+            android:foregroundTint="@color/colorPrimaryDark"
+            android:text="Add Chick" />
+
+    </LinearLayout>
+
+</FrameLayout>
+

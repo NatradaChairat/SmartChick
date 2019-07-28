@@ -2,13 +2,12 @@ package com.android.smartchick.data
 
 import com.google.firebase.database.Exclude
 import com.google.firebase.database.IgnoreExtraProperties
-import java.util.*
 
 @IgnoreExtraProperties
 data class Chicky (
         var id_chick: String? = null,
         var id_farm: String?= null,
-        var vaccine: Int? = null,
+        var vaccine: String? = null,
         var weight: Int? =null,
         var birthdate: String? =null
 ){

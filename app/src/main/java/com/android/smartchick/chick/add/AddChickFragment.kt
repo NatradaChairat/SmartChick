@@ -1,5 +1,7 @@
 package com.android.smartchick.chick.add
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -10,30 +12,41 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.android.smartchick.R
+import com.android.smartchick.authentication.login.MEMBER
+import com.android.smartchick.authentication.login.MEMBER_ID
+import com.android.smartchick.chick.add.info.AddChickInfoFragment
+import com.android.smartchick.data.Farm
 import com.google.zxing.Result
 import kotlinx.android.synthetic.main.fragment_scan_add_chick.*
 import kotlinx.android.synthetic.main.fragment_scan_add_chick.frame_layout_camera
-import kotlinx.android.synthetic.main.fragment_scan_daily_egg.*
 import me.dm7.barcodescanner.zxing.ZXingScannerView
 
 class AddChickFragment : Fragment(), AddChickContract.View, ZXingScannerView.ResultHandler  {
 
     override lateinit var presenter: AddChickContract.Presenter
 
-
     private var mScannerView: ZXingScannerView? = null
-
+    private var chickIDs = mutableListOf<String?>()
+    private var memberID : String? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        presenter = AddChickPresenter(this)
+
+        var sharedPref: SharedPreferences = activity!!.getSharedPreferences(MEMBER, Context.MODE_PRIVATE)
+        memberID = sharedPref.getString(MEMBER_ID, null)
+
         return inflater.inflate(R.layout.fragment_scan_add_chick, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        presenter = AddChickPresenter(this)
+        memberID?.apply {
+            presenter.loadChickIDList(this)
+        }
 
         initView()
+        initListener()
     }
 
     override fun onStart() {
@@ -59,19 +72,38 @@ class AddChickFragment : Fragment(), AddChickContract.View, ZXingScannerView.Res
     override fun handleResult(rawResult: Result?) {
         Log.d("QRcode Scanner", "Read: ${rawResult?.text}")
         Toast.makeText(context!!, "${rawResult?.text}", Toast.LENGTH_SHORT).show()
-        tvChickID.text = rawResult?.text
+        tvAddChickID.text = rawResult?.text
     }
 
     override fun onSuccess() {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
+    override fun onChickIDListLoaded(result: MutableList<String?>) {
+        chickIDs = result
+    }
+
+    override fun onFarmLoaded(result: MutableList<Farm>) {
+
+    }
+
+
     override fun onError(error: String?) {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     override fun showLoadingIndicator(active: Boolean) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        when (active) {
+            true -> {
+                llScanAddChick.visibility = View.GONE
+                progressBarScanAddChick.visibility = View.VISIBLE
+            }
+            false -> {
+                llScanAddChick.visibility = View.VISIBLE
+                progressBarScanAddChick.visibility = View.GONE
+            }
+        }
+
     }
 
     private fun initView() {
@@ -93,45 +125,44 @@ class AddChickFragment : Fragment(), AddChickContract.View, ZXingScannerView.Res
             }
 
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                tvChickID.text = s.toString()
+                tvAddChickID.text = s.toString()
             }
         })
 
         nextAddChick.setOnClickListener {
-//            Log.d("AddChick", "${checkChickID(tvChickID.text.toString())}")
-//            when (checkChickID(tvChickID.text.toString())) {
-//                true -> {
-//                    var dailyEggQualityFragment = DailyEggQualityFragment.newInstance()
-//                    Log.d("DailyScan", "chicky ID: ${tvChickID.text}")
-//                    var bundle = Bundle()
-//                    bundle.putString("CHICKID", tvChickID.text.toString())
-//                    bundle.putString("DATE", date)
-//                    dailyEggQualityFragment.arguments = bundle
-//
-//                    fragmentManager!!.beginTransaction().replace(R.id.contentFrame, dailyEggQualityFragment).addToBackStack(null).commit()
-//
-//                }
-//                false -> {
-//                    Toast.makeText(context!!, "Incorrect Chick ID", Toast.LENGTH_LONG).show()
-//                }
-//            }
+            Log.d("AddChick", "Is duplicate: ${checkChickIDIsDuplicate(tvAddChickID.text.toString())}")
+            when (!checkChickIDIsDuplicate(tvAddChickID.text.toString())) {
+                true -> {
+                    var addChickInfoFragment = AddChickInfoFragment.newInstance()
+                    Log.d("AddChick", "chicky ID: ${tvAddChickID.text}")
+                    var bundle = Bundle()
+                    bundle.putString("CHICKID", tvAddChickID.text.toString())
+                    addChickInfoFragment.arguments = bundle
+
+                    fragmentManager!!.beginTransaction().replace(R.id.contentFrame, addChickInfoFragment).addToBackStack(null).commit()
+
+                }
+                false -> {
+                    Toast.makeText(context!!, "Chick ID is duplicate", Toast.LENGTH_LONG).show()
+                }
+            }
         }
     }
 
     private fun checkChickIDIsDuplicate(chickID: String): Boolean {
-        Log.d("DailyScan", "checkChickID $chickID")
-//        return when (chickID in chickIDList) {
-//            true -> {
-//                true
-//            }
-//            false -> {
-//                false
-//            }
-//        }
+        Log.d("AddChick", "checkChickID $chickID")
+        return when (chickID in chickIDs) {
+            true -> {
+                true
+            }
+            false -> {
+                false
+            }
+        }
         return true
     }
 
