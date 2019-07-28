@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.smartchick.R
 import com.android.smartchick.authentication.login.MEMBER
 import com.android.smartchick.authentication.login.MEMBER_ID
@@ -14,14 +15,16 @@ import com.android.smartchick.data.Farm
 import com.android.smartchick.data.Member
 import kotlinx.android.synthetic.main.fragment_farm_information.*
 
-class FarmInformationFragment: Fragment(), FarmInformationContract.View {
+
+class FarmInformationFragment : Fragment(), FarmInformationContract.View {
 
     override lateinit var presenter: FarmInformationContract.Presenter
-    private var memberID : String? = null
+    private lateinit var adapter: FarmInformationAdapter
 
+    private var memberID: String? = null
     private var member: Member? = null
     private var farms: MutableList<Farm> = mutableListOf()
-    private var farmNameList : MutableList<String?> = mutableListOf()
+    private var farmNameList: MutableList<String?> = mutableListOf()
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -38,12 +41,15 @@ class FarmInformationFragment: Fragment(), FarmInformationContract.View {
 
         presenter.start()
 
+        initRecyclerView()
+
     }
 
     override fun onFarmLoaded(farmsResult: MutableList<Farm>) {
         farms = farmsResult
-        farmNameList = farmsResult.map {it.name_farm}.toMutableList()
+        farmNameList = farmsResult.map { it.name_farm }.toMutableList()
 
+        adapter.farms = farmNameList
         initView()
     }
 
@@ -56,10 +62,20 @@ class FarmInformationFragment: Fragment(), FarmInformationContract.View {
     }
 
     override fun showLoadingIndicator(active: Boolean) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        when(active){
+            true -> {
+                llFarmInfo.visibility = View.GONE
+                progressBarFarmInfo.visibility = View.VISIBLE
+            }
+            false -> {
+                llFarmInfo.visibility = View.VISIBLE
+                progressBarFarmInfo.visibility = View.GONE
+            }
+        }
+
     }
 
-    private fun initView(){
+    private fun initView() {
         member?.apply {
             tvName.text = "คุณ ${this.name_member}"
             tvFarmName.text = "ชื่อฟาร์ม ${this.name_farm}"
@@ -69,7 +85,17 @@ class FarmInformationFragment: Fragment(), FarmInformationContract.View {
 
     }
 
-    private fun initListenner(){
+    private fun initRecyclerView(){
+        adapter = FarmInformationAdapter(farmNameList = farmNameList)
+
+        with(farmRecyclerView) {
+            setHasFixedSize(true)
+            this.adapter = this@FarmInformationFragment.adapter
+            layoutManager = LinearLayoutManager(activity)
+        }
+    }
+
+    private fun initListenner() {
 
     }
 

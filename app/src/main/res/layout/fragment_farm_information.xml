@@ -1,50 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:paddingVertical="20dp"
-    android:paddingHorizontal="20dp">
+    android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/tvName"
+    <ProgressBar
+        android:id="@+id/progressBarFarmInfo"
+        style="?android:attr/progressBarStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="คุณ "
-        android:layout_marginBottom="10dp"/>
+        android:layout_gravity="center"
+        android:indeterminate="true"
+        android:visibility="gone" />
 
-    <TextView
-        android:id="@+id/tvFarmName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="ชื่อฟาร์ม "
-        android:layout_marginBottom="10dp"/>
-
-    <TextView
-        android:id="@+id/tvFarm"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="โรงเรือนที่ "
-        android:visibility="gone"/>
-
-    <View
+    <LinearLayout
+        android:id="@+id/llFarmInfo"
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#cccccc"
-        android:layout_marginVertical="20dp"/>
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingVertical="20dp"
+        android:paddingHorizontal="20dp">
 
-    <TextView
-        android:id="@+id/tvAddress"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="ที่อยู่ "
-        android:layout_marginBottom="10dp"/>
+        <TextView
+            android:id="@+id/tvName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="คุณ "
+            android:layout_marginBottom="10dp"/>
 
-    <TextView
-        android:id="@+id/tvPhoneNumber"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="เบอร์โทรติดต่อ "
-        android:layout_marginBottom="10dp"/>
+        <TextView
+            android:id="@+id/tvFarmName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ชื่อฟาร์ม "
+            android:layout_marginBottom="10dp"/>
 
-</LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/farmRecyclerView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+            </androidx.recyclerview.widget.RecyclerView>
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#cccccc"
+            android:layout_marginVertical="20dp"/>
+
+        <TextView
+            android:id="@+id/tvAddress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ที่อยู่ "
+            android:layout_marginBottom="10dp"/>
+
+        <TextView
+            android:id="@+id/tvPhoneNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="เบอร์โทรติดต่อ "
+            android:layout_marginBottom="10dp"/>
+
+    </LinearLayout>
+
+</FrameLayout>

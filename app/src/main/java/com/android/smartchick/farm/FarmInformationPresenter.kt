@@ -16,6 +16,7 @@ class FarmInformationPresenter(val view: FarmInformationContract.View,
     }
 
     override fun start() {
+        view.showLoadingIndicator(true)
         loadInformation(memberID)
         loadFarmInformation(memberID)
     }
@@ -52,6 +53,7 @@ class FarmInformationPresenter(val view: FarmInformationContract.View,
                 dataSnapshot.children.mapNotNullTo(resultList) { it.getValue<Farm>(Farm::class.java) }
                 Log.d("FarmInfo", "Value farm: $resultList")
                 view.onFarmLoaded(resultList)
+                view.showLoadingIndicator(false)
             }
 
             override fun onCancelled(error: DatabaseError) {
