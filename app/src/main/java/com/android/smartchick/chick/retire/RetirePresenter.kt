@@ -3,6 +3,10 @@ package com.android.smartchick.chick.retire
 import com.android.smartchick.data.Chicky
 
 class RetirePresenter(val view: RetireContract.View) : RetireContract.Presenter {
+    override fun loadChickIDList() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
     init {
         view.presenter = this
     }

@@ -1,4 +1,4 @@
-package com.android.smartchick.authentication.notification
+package com.android.smartchick.notification
 
 import android.os.Bundle
 import android.view.LayoutInflater

@@ -1,6 +1,5 @@
 package com.android.smartchick.dashboard
 
-import android.content.Context
 import android.content.Context.MODE_PRIVATE
 import android.content.SharedPreferences
 import android.os.Bundle
@@ -18,27 +17,26 @@ import com.android.smartchick.egg.DailyEggFragment
 import com.android.smartchick.farm.FarmInformationFragment
 import kotlinx.android.synthetic.main.fragment_main.*
 
-class DashboardFragment : Fragment(), DashboardContract.View {
+class DashboardFragment(var memberID: String) : Fragment(), DashboardContract.View {
 
     override lateinit var presenter: DashboardContract.Presenter
-    private var memberID : String? = null
     private var member: Member? =null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
-        this.arguments?.let {
-            memberID = it.getString("MEMBER_ID")
-        }
-
-        when(memberID.isNullOrEmpty()) {
-            true -> {
-                var sharedPref: SharedPreferences = activity!!.getSharedPreferences(MEMBER, MODE_PRIVATE)
-                memberID = sharedPref.getString(MEMBER_ID, null)
-            }
-        }
+//        this.arguments?.let {
+//            memberID = it.getString("MEMBER_ID")
+//        }
+//
+//        when(memberID.isNullOrEmpty()) {
+//            true -> {
+//                var sharedPref: SharedPreferences = activity!!.getSharedPreferences(MEMBER, MODE_PRIVATE)
+//                memberID = sharedPref.getString(MEMBER_ID, null)
+//            }
+//        }
         Log.d("DashBoard", "$memberID")
 
-        presenter = DashboardPresenter(this, memberID!!)
+        presenter = DashboardPresenter(this, memberID)
 
         return inflater.inflate(R.layout.fragment_main, container, false)
     }
@@ -51,7 +49,7 @@ class DashboardFragment : Fragment(), DashboardContract.View {
         initListener()
     }
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        return inflater.inflate(R.menu.manu_main, menu)
+        return inflater.inflate(R.menu.menu_main, menu)
 
     }
 
@@ -127,6 +125,6 @@ class DashboardFragment : Fragment(), DashboardContract.View {
     }
 
     companion object {
-        fun newInstance() = DashboardFragment()
+        fun newInstance(memberID: String) = DashboardFragment(memberID)
     }
 }

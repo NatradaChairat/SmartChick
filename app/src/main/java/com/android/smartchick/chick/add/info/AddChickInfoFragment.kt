@@ -61,7 +61,7 @@ class AddChickInfoFragment : Fragment(), AddChickContract.View{
 
     override fun onSuccess() {
         Toast.makeText(context, "Adding success", Toast.LENGTH_LONG).show()
-        fragmentManager!!.beginTransaction().replace(R.id.contentFrame, DashboardFragment.newInstance()).addToBackStack(null).commit()
+       // fragmentManager!!.beginTransaction().replace(R.id.contentFrame, DashboardFragment.newInstance()).addToBackStack(null).commit()
     }
 
     override fun onChickIDListLoaded(result: MutableList<String?>) {

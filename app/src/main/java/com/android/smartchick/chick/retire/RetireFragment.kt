@@ -7,6 +7,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 
 class RetireFragment() : Fragment(), RetireContract.View {
+    override fun onLoadedChickIDList(result: MutableList<String>) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
 
     override lateinit var presenter: RetireContract.Presenter
 

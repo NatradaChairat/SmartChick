@@ -3,11 +3,7 @@ package com.android.smartchick
 import android.Manifest
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.android.smartchick.authentication.AuthenticationActivity
-import android.content.Intent
-import android.os.Handler
 import android.widget.Toast
-import androidx.core.os.HandlerCompat.postDelayed
 import com.android.smartchick.authentication.AuthenticationFragment
 import com.yanzhenjie.permission.AndPermission
 import com.yanzhenjie.permission.PermissionNo

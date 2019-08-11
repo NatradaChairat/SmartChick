@@ -54,7 +54,8 @@ class DailyEggQualityFragment : Fragment(), DailyEggQualityContract.View {
     }
 
     override fun onSuccess() {
-        fragmentManager!!.beginTransaction().replace(R.id.contentFrame, DashboardFragment.newInstance()).addToBackStack(null).commit()
+        Toast.makeText(context, "Success", Toast.LENGTH_LONG).show()
+       // fragmentManager!!.beginTransaction().replace(R.id.contentFrame, DashboardFragment.newInstance()).addToBackStack(null).commit()
 
     }
 

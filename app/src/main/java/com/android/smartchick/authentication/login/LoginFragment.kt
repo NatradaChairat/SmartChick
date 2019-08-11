@@ -11,6 +11,8 @@ import com.android.smartchick.dashboard.DashboardFragment
 import kotlinx.android.synthetic.main.fragment_login.*
 import android.content.SharedPreferences
 import android.content.Context.MODE_PRIVATE
+import android.content.Intent
+import com.android.smartchick.dashboard.DashboardActivity
 
 
 val MEMBER = "MEMBER"
@@ -41,11 +43,19 @@ class LoginFragment : Fragment(), LoginContract.View{
                 editor.putString(MEMBER_ID, memberID)
                 editor.apply()
 
-                val dashboardFragment = DashboardFragment.newInstance()
-                var bundle = Bundle()
-                bundle.putString("MEMBER_ID", memberID)
-                dashboardFragment.arguments = bundle
-                fragmentManager!!.beginTransaction().replace(com.android.smartchick.R.id.contentFrame, dashboardFragment).addToBackStack(null).commit()
+                context?.apply {
+                    startActivity(DashboardActivity.newIntent(this, memberID!!))
+                }
+
+
+
+//                val dashboardFragment = DashboardFragment.newInstance(memberID)
+//                var bundle = Bundle()
+//                bundle.putString("MEMBER_ID", memberID)
+//                dashboardFragment.arguments = bundle
+//                fragmentManager!!.beginTransaction().replace(com.android.smartchick.R.id.contentFrame, dashboardFragment).addToBackStack(null).commit()
+//
+
             }
             false -> {
                 Toast.makeText(context!!, "Incorrect!", Toast.LENGTH_LONG).show()
