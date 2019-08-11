@@ -13,6 +13,7 @@ class DashboardActivity: AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_dashboard)
+        setSupportActionBar(findViewById(R.id.toolbar))
 
         val hasMemberID = intent.hasExtra("MEMBER_ID")
 

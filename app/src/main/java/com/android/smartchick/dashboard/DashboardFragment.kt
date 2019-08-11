@@ -101,11 +101,11 @@ class DashboardFragment(var memberID: String) : Fragment(), DashboardContract.Vi
     private fun initListener(){
 
         btnProfileChick.setOnClickListener {
-            fragmentManager!!.beginTransaction().replace(R.id.contentFrame, ProfileChickFragment.newInstance()).addToBackStack(null).commit()
+            fragmentManager!!.beginTransaction().replace(R.id.contentFrameDashBoard, ProfileChickFragment.newInstance()).addToBackStack(null).commit()
         }
 
         btnInfoFarm.setOnClickListener {
-            fragmentManager!!.beginTransaction().replace(R.id.contentFrame, FarmInformationFragment.newInstance()).addToBackStack(null).commit()
+            fragmentManager!!.beginTransaction().replace(R.id.contentFrameDashBoard, FarmInformationFragment.newInstance()).addToBackStack(null).commit()
         }
 
         btnDailyEgg.setOnClickListener {
@@ -115,11 +115,11 @@ class DashboardFragment(var memberID: String) : Fragment(), DashboardContract.Vi
                 bundle.putString("MEMBER_ID", memberID)
                 dailyEggFragment.arguments = bundle
             }
-            fragmentManager!!.beginTransaction().replace(R.id.contentFrame, dailyEggFragment).addToBackStack(null).commit()
+            fragmentManager!!.beginTransaction().replace(R.id.contentFrameDashBoard, dailyEggFragment).addToBackStack(null).commit()
         }
 
         btnAddChick.setOnClickListener {
-            fragmentManager!!.beginTransaction().replace(R.id.contentFrame, AddChickFragment.newInstance()).addToBackStack(null).commit()
+            fragmentManager!!.beginTransaction().replace(R.id.contentFrameDashBoard, AddChickFragment.newInstance()).addToBackStack(null).commit()
         }
 
     }

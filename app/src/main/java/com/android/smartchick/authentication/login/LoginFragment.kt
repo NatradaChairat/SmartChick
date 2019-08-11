@@ -47,15 +47,6 @@ class LoginFragment : Fragment(), LoginContract.View{
                     startActivity(DashboardActivity.newIntent(this, memberID!!))
                 }
 
-
-
-//                val dashboardFragment = DashboardFragment.newInstance(memberID)
-//                var bundle = Bundle()
-//                bundle.putString("MEMBER_ID", memberID)
-//                dashboardFragment.arguments = bundle
-//                fragmentManager!!.beginTransaction().replace(com.android.smartchick.R.id.contentFrame, dashboardFragment).addToBackStack(null).commit()
-//
-
             }
             false -> {
                 Toast.makeText(context!!, "Incorrect!", Toast.LENGTH_LONG).show()
