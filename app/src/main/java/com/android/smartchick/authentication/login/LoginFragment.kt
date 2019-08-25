@@ -45,6 +45,7 @@ class LoginFragment : Fragment(), LoginContract.View{
 
                 context?.apply {
                     startActivity(DashboardActivity.newIntent(this, memberID!!))
+
                 }
 
             }

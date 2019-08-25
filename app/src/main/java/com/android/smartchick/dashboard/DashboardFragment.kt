@@ -1,13 +1,18 @@
 package com.android.smartchick.dashboard
 
 import android.content.Context.MODE_PRIVATE
+import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import android.view.*
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.DialogCompat
 import androidx.fragment.app.Fragment
+import com.afollestad.materialdialogs.MaterialDialog
+import com.android.smartchick.MainActivity
 import com.android.smartchick.R
+import com.android.smartchick.authentication.AuthenticationActivity
 import com.android.smartchick.authentication.login.MEMBER
 import com.android.smartchick.authentication.login.MEMBER_ID
 import com.android.smartchick.chick.add.AddChickFragment
@@ -15,6 +20,7 @@ import com.android.smartchick.chick.profile.ProfileChickFragment
 import com.android.smartchick.data.Member
 import com.android.smartchick.egg.DailyEggFragment
 import com.android.smartchick.farm.FarmInformationFragment
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.fragment_main.*
 
 class DashboardFragment(var memberID: String) : Fragment(), DashboardContract.View {
@@ -50,7 +56,6 @@ class DashboardFragment(var memberID: String) : Fragment(), DashboardContract.Vi
     }
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         return inflater.inflate(R.menu.menu_main, menu)
-
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -58,14 +63,13 @@ class DashboardFragment(var memberID: String) : Fragment(), DashboardContract.Vi
         item?.apply {
             when (this.itemId) {
                 R.id.profile -> {
-
                 }
 
                 R.id.notification -> {
 
                 }
 
-                android.R.id.home -> {
+                R.id.home -> {
 
                 }
 
@@ -99,6 +103,26 @@ class DashboardFragment(var memberID: String) : Fragment(), DashboardContract.Vi
 
 
     private fun initListener(){
+
+        ivProfile.setOnLongClickListener {
+            context?.apply {
+                MaterialDialog(this).show {
+                    cornerRadius(16f)
+                    title(text = "ต้องการออกจากระบบใช่หรือไม่")
+                    negativeButton(text = "ไม่")
+                    positiveButton(text = "ใช่")
+                    positiveButton {
+                        FirebaseAuth.getInstance().signOut()
+                        startActivity(Intent(context, MainActivity::class.java))
+                    }
+                    negativeButton {
+                        dismiss()
+                    }
+                }
+            }
+
+            return@setOnLongClickListener true
+        }
 
         btnProfileChick.setOnClickListener {
             fragmentManager!!.beginTransaction().replace(R.id.contentFrameDashBoard, ProfileChickFragment.newInstance()).addToBackStack(null).commit()

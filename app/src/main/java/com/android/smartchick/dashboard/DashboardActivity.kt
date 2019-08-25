@@ -3,7 +3,6 @@ package com.android.smartchick.dashboard
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.os.PersistableBundle
 import androidx.appcompat.app.AppCompatActivity
 import com.android.smartchick.R
 
@@ -34,8 +33,8 @@ class DashboardActivity: AppCompatActivity() {
     companion object {
         fun newIntent(context: Context, memberID: String): Intent {
             return Intent(context, DashboardActivity::class.java).apply {
-                putExtra("MEMBER_ID", memberID)
-                flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+                val putExtra = putExtra("MEMBER_ID", memberID)
+                flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             }
         }
     }

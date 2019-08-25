@@ -43,14 +43,6 @@ class AuthenticationFragment: Fragment() {
 
         btnLogin.setOnClickListener {
 
-//            activity?.supportFragmentManager?.findFragmentById(R.id.contentFrame) as LoginFragment?
-//                    ?: LoginFragment.newInstance().also {
-//                        (activity as AppCompatActivity).supportFragmentManager.beginTransaction().apply {
-//                            replace(R.id.contentFrame, it).commit()
-//                        }
-//                        LoginPresenter(it)
-//                    }
-
             (activity as AppCompatActivity).supportFragmentManager.beginTransaction().apply {
                 replace(R.id.contentFrame, LoginFragment.newInstance()).commit()
             }

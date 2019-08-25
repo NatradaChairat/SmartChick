@@ -16,6 +16,7 @@ android {
     }
     buildTypes {
         release {
+            debuggable true
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
@@ -49,7 +50,8 @@ dependencies {
     implementation 'com.journeyapps:zxing-android-embedded:3.6.0'
     implementation 'me.dm7.barcodescanner:zxing:1.9.13'
 
-    //Permission
-    implementation 'com.yanzhenjie:permission:1.0.9'
+    //MaterialDialog
+    implementation 'com.afollestad.material-dialogs:core:3.1.0'
+
 }
 apply plugin: 'com.google.gms.google-services'

@@ -30,6 +30,12 @@
         </activity>
 
         <activity
+            android:name=".authentication.AuthenticationActivity"
+            android:launchMode="standard"
+            >
+        </activity>
+
+        <activity
             android:name=".dashboard.DashboardActivity"
             android:launchMode="standard"
             >
